@@ -36,7 +36,7 @@ public class Game {
         	 }
          }
          Move[] arrayToPrint2 = b2.getPossibleMoves(Player.RED);
-         for (Move move: arrayToPrint){
+         for (Move move: arrayToPrint2){
         	 System.out.println(move);
          }
             
