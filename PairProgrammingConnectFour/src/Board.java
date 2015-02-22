@@ -105,6 +105,10 @@ public class Board {
 	 * Thus, if all columns are full, return an array of length 0.
 	 */
 	public Move[] getPossibleMoves(Player p) {
+		if (hasConnectFour() != null){
+			return new Move[0];
+		}
+		
 		ArrayList<Move> movesArray = new ArrayList<Move>();
 		Move currentMove = null;
 		for (int i = 0; i < NUM_COLS; i++) {
