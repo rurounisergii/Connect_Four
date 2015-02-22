@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,13 +104,17 @@ public class Board {
 	 * Thus, if all columns are full, return an array of length 0.
 	 */
 	public Move[] getPossibleMoves(Player p) {
-		if (hasConnectFour() != null){
+		if (hasConnectFour() != null) {
 			return new Move[0];
 		}
-		
+
 		ArrayList<Move> movesArray = new ArrayList<Move>();
 		Move currentMove = null;
 		for (int i = 0; i < NUM_COLS; i++) {
+			if (getTile(0, i) == null) {
+				for (int j = NUM_ROWS - 1; j >= 0; j--) {
+				}
+			}
 			try {
 				currentMove = new Move(Player.RED, i);
 				makeMove(currentMove);
