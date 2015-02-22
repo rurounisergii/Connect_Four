@@ -14,44 +14,41 @@ public class Game {
     //Change this if you would like a delay between plays
     private static final long SLEEP_INTERVAL = 10; //in milliseconds
     
-    private static void getPossibleMovesTester() {
-    	 Board b= new Board();
-         for (int i = 0; i < Board.NUM_ROWS ; i++) { //fills column
+    /**
+     * 
+     * @param board - the board where columns will be filled
+     * @param depth - how many rows to fill
+     * @param player - the first player to move
+     * @param column - the column in the board that will be filled
+     */
+    public static void fillColumn(Board board, int column, int depth, Player player){
+    	 for (int i = 0; i < depth ; i++) { //fills column to depth
         	 if (i % 2 == 0) {
-        		 b.makeMove(new Move(Player.RED, 0));
+        		 board.makeMove(new Move(player, column));
         	 } else {
-        		 b.makeMove(new Move(Player.YELLOW, 0));
+        		 board.makeMove(new Move(player.opponent(), column));
         	 }
          }
-         Move[] arrayToPrint = b.getPossibleMoves(Player.RED);
+    }
+    
+    private static void getPossibleMovesTester() {
+    	System.out.println("Testing getPossibleMoves. Column 0 has been filled so there should be 6 possible moves for adding to other columns");
+    	Board b= new Board();
+    	Game.fillColumn(b, 0, Board.NUM_ROWS, Player.RED);
+    	 Move[] arrayToPrint = b.getPossibleMoves(Player.RED);
          for (Move move: arrayToPrint){
         	 System.out.println(move);
          }
-         System.out.println("Test2");
-    	 Board b2= new Board();
-         for (int i = 0; i < 4 ; i++) { //fills column
-        	 if (i % 2 == 0) {
-        		 b2.makeMove(new Move(Player.RED, 0));
-        	 } else {
-        		 b2.makeMove(new Move(Player.YELLOW, 0));
-        	 }
-         }
-         Move[] arrayToPrint2 = b2.getPossibleMoves(Player.RED);
+         
+         System.out.println("Testing getPossibleMoves1. Column 0 had moves added to it but not filled so there should be 7 possible moves including adding to column 0");
+         Board b2 = new Board();
+         Game.fillColumn(b2,  0, Board.NUM_ROWS - 1, Player.RED);
+    	 Move[] arrayToPrint2 = b2.getPossibleMoves(Player.RED);
          for (Move move: arrayToPrint2){
         	 System.out.println(move);
-         }
-            
-         
+         }        
     }
-         /*
-          Move[] moves= b.getPossibleMoves(Player.RED);
-             if (moves.length != Board.NUM_COLS-1) {
-          System.out.println("Error in getPossibleMoves with 1 col filled. array size is wrong: " +  moves.length);
-           }
-         if (moves[0].getColumn() != 1) {
-          System.out.println(s + "First col is filled, second isn't but moves[0] is " + moves[0]);
-           */                        
-    
+ 
 
     /**
      * Have the computer play against itself, putting output int the default
