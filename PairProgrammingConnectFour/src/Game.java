@@ -2,7 +2,7 @@
  * Runs the Connect Four game.
  */
 public class Game {
-// TODO DELETE ME
+
     private Solver player1;   // The first player
     private Solver player2;  // The second player
     private Board board;     // the board
