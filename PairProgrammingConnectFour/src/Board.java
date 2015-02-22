@@ -113,7 +113,9 @@ public class Board {
 				movesArray.add(new Move(p,i));
 			}
 		}
-		return (Move[]) movesArray.toArray();
+		Move[] result = new Move[movesArray.size()];
+		result = movesArray.toArray(result);
+		return result;
 	}
 
 	/**

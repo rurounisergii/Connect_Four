@@ -15,21 +15,42 @@ public class Game {
     
     private static void getPossibleMovesTester() {
     	 Board b= new Board();
-         for (int i = 0; Board.NUM_ROWS < 6; i++) {
+         for (int i = 0; i < Board.NUM_ROWS ; i++) { //fills column
         	 if (i % 2 == 0) {
         		 b.makeMove(new Move(Player.RED, 0));
         	 } else {
         		 b.makeMove(new Move(Player.YELLOW, 0));
         	 }
          }
-                         Move[] moves= b.getPossibleMoves(Player.RED);
-                         if (moves.length != Board.NUM_COLS-1) {
-                                       System.out.println("Error in getPossibleMoves with 1 col filled. array size is wrong: " +  moves.length);
-                                 }
-                                   if (moves[0].getColumn() != 1) {
-                                       System.out.println(s + "First col is filled, second isn't but moves[0] is " + moves[0]);
-                                   } 
+         Move[] arrayToPrint = b.getPossibleMoves(Player.RED);
+         for (Move move: arrayToPrint){
+        	 System.out.println(move);
+         }
+         System.out.println("Test2");
+    	 Board b2= new Board();
+         for (int i = 0; i < 4 ; i++) { //fills column
+        	 if (i % 2 == 0) {
+        		 b2.makeMove(new Move(Player.RED, 0));
+        	 } else {
+        		 b2.makeMove(new Move(Player.YELLOW, 0));
+        	 }
+         }
+         Move[] arrayToPrint2 = b2.getPossibleMoves(Player.RED);
+         for (Move move: arrayToPrint){
+        	 System.out.println(move);
+         }
+            
+         
     }
+         /*
+          Move[] moves= b.getPossibleMoves(Player.RED);
+             if (moves.length != Board.NUM_COLS-1) {
+          System.out.println("Error in getPossibleMoves with 1 col filled. array size is wrong: " +  moves.length);
+           }
+         if (moves[0].getColumn() != 1) {
+          System.out.println(s + "First col is filled, second isn't but moves[0] is " + moves[0]);
+           */                        
+    
 
     /**
      * Have the computer play against itself, putting output int the default
@@ -48,7 +69,7 @@ public class Game {
          * searches the game space. */
         Solver p1 = new Dummy(Player.RED);
         Solver p2 = new Dummy(Player.YELLOW);
-
+        Game.getPossibleMovesTester();
         // Solver p1= new AI(Board.Player.RED, 5);
         // Solver p2= new AI(Board.Player.YELLOW, 5);
 
