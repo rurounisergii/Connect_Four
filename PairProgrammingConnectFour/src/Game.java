@@ -12,6 +12,24 @@ public class Game {
 
     //Change this if you would like a delay between plays
     private static final long SLEEP_INTERVAL = 10; //in milliseconds
+    
+    private static void getPossibleMovesTester() {
+    	 Board b= new Board();
+         for (int i = 0; Board.NUM_ROWS < 6; i++) {
+        	 if (i % 2 == 0) {
+        		 b.makeMove(new Move(Player.RED, 0));
+        	 } else {
+        		 b.makeMove(new Move(Player.YELLOW, 0));
+        	 }
+         }
+                         Move[] moves= b.getPossibleMoves(Player.RED);
+                         if (moves.length != Board.NUM_COLS-1) {
+                                       System.out.println("Error in getPossibleMoves with 1 col filled. array size is wrong: " +  moves.length);
+                                 }
+                                   if (moves[0].getColumn() != 1) {
+                                       System.out.println(s + "First col is filled, second isn't but moves[0] is " + moves[0]);
+                                   } 
+    }
 
     /**
      * Have the computer play against itself, putting output int the default
@@ -34,8 +52,12 @@ public class Game {
         // Solver p1= new AI(Board.Player.RED, 5);
         // Solver p2= new AI(Board.Player.YELLOW, 5);
 
-        Game game = new Game(p1, p2);
-        game.runGame();
+//        Game game = new Game(p1, p2);
+//        game.runGame();
+        
+        // TESTING
+        
+       
         
         /* When testing, you may want to comment out all the above statements
          */
