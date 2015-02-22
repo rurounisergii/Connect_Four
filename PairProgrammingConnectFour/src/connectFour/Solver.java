@@ -1,3 +1,4 @@
+package connectFour;
 /**
  * An instance is an entity that can supply moves for a Connect Four game.
  */
