@@ -15,7 +15,7 @@ public class Game {
     private static final long SLEEP_INTERVAL = 10; //in milliseconds
     
     /**
-     * 
+     * This method is used to quickly fill up a board in a desired way when testing
      * @param board - the board where columns will be filled
      * @param depth - how many rows to fill
      * @param player - the first player to move
