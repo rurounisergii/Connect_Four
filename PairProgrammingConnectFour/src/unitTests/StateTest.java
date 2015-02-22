@@ -15,7 +15,7 @@ public class StateTest {
 	
 	/**
 	 * A board is made and 6 of its 7 columns are filled in such a way that neither player has won the game
-	 * The only next possible move is inserting into the 7th column
+	 * The only next possible move is Player.YELLOW inserting into the 7th column
 	 * Therefore State.initializeChildren() should only return that state
 	 */
 	@Test
