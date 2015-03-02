@@ -47,9 +47,11 @@ public class AI implements Solver {
         // Note: This method must be recursive, recurse on d,
         // which should get smaller with each recursive call
     	if (d != 0){
-    		s.initializeChildren();
-    		for(int i = 0; i < s.getChildren().length; i++){
-    			createGameTree(s.getChildren()[i], d -1);
+    		if (s.getBoard().hasConnectFour() == null){
+    			s.initializeChildren();
+	    		for(int i = 0; i < s.getChildren().length; i++){
+	    			createGameTree(s.getChildren()[i], d -1);
+	    		}
     		}
     	}
     }
