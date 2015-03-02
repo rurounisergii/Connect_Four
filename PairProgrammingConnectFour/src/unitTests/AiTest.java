@@ -16,8 +16,7 @@ public class AiTest {
 	public void createGameTreeTester() {
 		Board testerBoard = new Board();
 		State testerState = new State(Player.YELLOW, testerBoard, null);
-//		AI.createGameTree(testerState, 4);
-		testerState.setChildren(new State[0]);
+		AI.createGameTree(testerState, 4);
 		testerState.writeToFile();
 		// assertEquals(Player.YELLOW,
 		// testerState.getChildren()[0].getBoard().getTile(5, 6));

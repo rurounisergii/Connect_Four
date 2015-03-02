@@ -1,4 +1,5 @@
 package connectFour;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -60,7 +61,8 @@ public class AI implements Solver {
      * Call minimax in ai with state s.
      */
     public static void minimax(AI ai, State s) {
-        ai.minimax(s);
+    	createGameTree(s, ai.depth);
+    	ai.minimax(s);
     }
 
     /**
@@ -69,7 +71,10 @@ public class AI implements Solver {
      * tree rooted at s, indicating how desirable that java.State is to this player.
      */
     public void minimax(State s) {
-        // TODO
+    	if (s.getChildren().length != 0) {
+    		s.setValue(evaluateBoard(s.getBoard()));
+    		Arrays.stream(s.getChildren()).forEach(x -> minimax(x));
+    	}
     }
 
     /**
