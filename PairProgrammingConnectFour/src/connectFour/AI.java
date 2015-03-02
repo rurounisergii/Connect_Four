@@ -37,7 +37,9 @@ public class AI implements Solver {
 		State boardState = new State(player, b, null);
 		minimax(this, boardState);
 		int maxValue = Arrays.stream(boardState.getChildren()).map(x -> x.getValue()).max(Integer::compare).get();
-		Move[] resultMoves = Arrays.stream(boardState.getChildren()).filter(y -> y.getValue() == maxValue).toArray(Move[]::new);
+		System.out.println("max value: " + maxValue);
+		Move[] resultMoves = Arrays.stream(boardState.getChildren()).filter(y -> y.getValue() == maxValue).map(t -> t.getLastMove()).toArray(Move[]::new);
+		Arrays.stream(resultMoves).forEach(System.out::println);
 		return resultMoves;
 	}
 

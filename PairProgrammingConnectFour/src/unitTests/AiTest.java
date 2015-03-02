@@ -33,6 +33,8 @@ public class AiTest {
 		State testerState = new State(Player.YELLOW, testerBoard, null);
 		AI.minimax(new AI(Player.YELLOW, 6), testerState);
 		testerState.writeToFile();
+		AI testerAI = new AI(Player.YELLOW, 6);
+		testerAI.getMoves(testerState.getBoard());
 		// assertEquals(Player.YELLOW,
 		// testerState.getChildren()[0].getBoard().getTile(5, 6));
 		fail("Not yet implemented");
