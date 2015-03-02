@@ -28,8 +28,6 @@ public class AiTest {
 		Board testerBoard = new Board();
 		Game.fillColumn(testerBoard, 0, Board.NUM_ROWS, Player.RED);
 		Game.fillColumn(testerBoard, 1, Board.NUM_ROWS, Player.YELLOW);
-		Game.fillColumn(testerBoard, 2, Board.NUM_ROWS, Player.RED);
-		Game.fillColumn(testerBoard, 3, Board.NUM_ROWS, Player.RED);
 		Game.fillColumn(testerBoard, 4, Board.NUM_ROWS, Player.RED);
 		Game.fillColumn(testerBoard, 5, Board.NUM_ROWS, Player.YELLOW);
 		State testerState = new State(Player.YELLOW, testerBoard, null);

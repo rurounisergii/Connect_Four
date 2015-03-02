@@ -31,8 +31,14 @@ public class AI implements Solver {
 	 */
 	@Override
 	public Move[] getMoves(Board b) {
-		// TODO
-		return null;
+		if (b.getPossibleMoves(player).length == 0){
+			return new Move[0];
+		}
+		State boardState = new State(player, b, null);
+		minimax(this, boardState);
+		int maxValue = Arrays.stream(boardState.getChildren()).map(x -> x.getValue()).max(Integer::compare).get();
+		Move[] resultMoves = Arrays.stream(boardState.getChildren()).filter(y -> y.getValue() == maxValue).toArray(Move[]::new);
+		return resultMoves;
 	}
 
 	/**
@@ -76,20 +82,12 @@ public class AI implements Solver {
 	public void minimax(State s) {
     	if (s.getChildren().length != 0) { // parents
     		Arrays.stream(s.getChildren()).forEach(x -> minimax(x));
-    		if (player == s.getPlayer()) { // max
-    			Optional<Integer> maxVal = Arrays.stream(s.getChildren()).map(x -> x.getValue()).max(Integer::compare);
-    			if (maxVal.isPresent()){
-    				s.setValue(maxVal.get());
-//    				System.out.println(s.getValue());
-    			}
-    		} else { // min
-    			Optional<Integer> minVal = Arrays.stream(s.getChildren()).map(x -> x.getValue()).min(Integer::compare);
-    			if (minVal.isPresent()){
-    				s.setValue(minVal.get());
-    				System.out.println(s.getValue());
-    			}
+    		if (player == s.getPlayer()) { // get max value as current player
+    				s.setValue(Arrays.stream(s.getChildren()).map(x -> x.getValue()).max(Integer::compare).get());
+    			
+    		} else { // get min value as opponent
+    				s.setValue(Arrays.stream(s.getChildren()).map(x -> x.getValue()).min(Integer::compare).get());
     		}
-    		s.setValue(evaluateBoard(s.getBoard()));
     	} else { // leafs
     		s.setValue(evaluateBoard(s.getBoard()));
     	}
