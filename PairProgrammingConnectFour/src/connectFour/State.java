@@ -110,12 +110,13 @@ public class State implements Comparable<Object> {
 	 * does not recursively initialize all descendants.
 	 */
 	public void initializeChildren() {
-		children = new State[board.getPossibleMoves(player).length];
+		Move[] possibleMoves = board.getPossibleMoves(player);
+		children = new State[possibleMoves.length];
 		Move currentPossibleMove = null;
 
-		if (board.getPossibleMoves(player).length != 0) {
+		if (children.length != 0) {
 			for (int i = 0; i < children.length; i++) {
-				currentPossibleMove = board.getPossibleMoves(player)[i];
+				currentPossibleMove = possibleMoves[i];
 				children[i] = new State(player.opponent(), board,
 						currentPossibleMove);
 				children[i].getBoard().makeMove(currentPossibleMove);
