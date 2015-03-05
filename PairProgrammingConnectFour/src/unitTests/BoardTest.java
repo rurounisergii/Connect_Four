@@ -35,5 +35,10 @@ public class BoardTest {
 		Move errorMove = new Move(Player.RED, 2); 
 		testerBoard.makeMove(errorMove); // make a move to add to the filled up column, should be an exception
 	}
+	
+	@Test
+	public void getPossibleMovesTest(){
+		
+	}
 
 }
