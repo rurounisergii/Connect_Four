@@ -49,7 +49,8 @@ public class BoardTest {
 		//i.e. inserting into columns 1,2,3,4 or 5
 		Move[] expected = {new Move(Player.RED, 1), new Move(Player.RED, 2), new Move(Player.RED, 3), new Move(Player.RED, 4), new Move(Player.RED, 5)};
 		Move[] result = testerBoard.getPossibleMoves(Player.RED);
-		assertEquals(expected.length, result.length);
+		assertEquals(expected.length, result.length); //there should be 5 possible moves
+		//determine if they are the expected moves:
 		boolean sameArrays = true;
 		for (int x = 0; x < expected.length; x++){
 			if (expected[x].getColumn() != result[x].getColumn() ||expected[x].getPlayer() != result[x].getPlayer()){
@@ -80,17 +81,14 @@ public class BoardTest {
 		//fill up the whole board
 		testerBoard.fillColumn(0, Board.NUM_ROWS, Player.RED);
 		testerBoard.fillColumn(1, Board.NUM_ROWS, Player.RED);
-		testerBoard.fillColumn(2, Board.NUM_ROWS, Player.RED);
-
+		//the board is filled up in such a way that there are no winners
+		testerBoard.fillColumn(2, Board.NUM_ROWS - 1, Player.RED); 
+		testerBoard.fillColumn(3, Board.NUM_ROWS, Player.YELLOW);
+		testerBoard.makeMove(new Move(Player.YELLOW, 2));
 		testerBoard.fillColumn(4, Board.NUM_ROWS, Player.RED);
 		testerBoard.fillColumn(5, Board.NUM_ROWS, Player.RED);
 		testerBoard.fillColumn(6, Board.NUM_ROWS, Player.RED);
 		//getPossibleMoves should return an empty array as the board is full
-		assertEquals(0, testerBoard.getPossibleMoves(Player.YELLOW));
+		assertEquals(0, testerBoard.getPossibleMoves(Player.YELLOW).length);
 	}
-	
-	//check must be in increasing column order
-	//if all columns are full - return array of size 0
-	//return array of size of possible moves
-
 }
