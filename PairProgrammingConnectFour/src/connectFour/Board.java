@@ -120,6 +120,22 @@ public class Board {
 		return result;
 	}
 
+    /**
+     * This method is used to quickly fill up a board in a desired way when testing
+     * @param depth - how many rows to fill
+     * @param player - the first player to move
+     * @param column - the column in the board that will be filled
+     */
+    public void fillColumn(int column, int depth, Player player){
+    	 for (int i = 0; i < depth ; i++) { //fills column to depth
+        	 if (i % 2 == 0) {
+        		 this.makeMove(new Move(player, column));
+        	 } else {
+        		 this.makeMove(new Move(player.opponent(), column));
+        	 }
+         }
+    }
+
 	/**
 	 * Return a representation of this board
 	 */

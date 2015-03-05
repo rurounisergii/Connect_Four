@@ -10,6 +10,11 @@ import connectFour.Game;
 import connectFour.Player;
 import connectFour.State;
 
+/**
+ * 
+ * Contains unit tests for createGameTree(), minimax() and getMoves() methods
+ *
+ */
 public class AiTest {
 
 //	@Test
