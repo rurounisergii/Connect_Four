@@ -34,7 +34,10 @@ public class StateTest {
 		testerBoard.fillColumn(5, Board.NUM_ROWS, Player.YELLOW);
 		State testerState = new State(Player.YELLOW, testerBoard, null);
 		testerState.initializeChildren();
+		//only one state is possible:
 		assertEquals(Player.YELLOW, testerState.getChildren()[0].getBoard().getTile(5, 6));
+		assertEquals(null, testerState.getChildren()[0].getBoard().getTile(4, 6));
+		assertEquals(1, testerState.getChildren().length);
 	}
 
 }
