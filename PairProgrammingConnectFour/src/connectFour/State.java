@@ -3,6 +3,7 @@ package connectFour;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 
 /**
  * An instance represents the state of a game of Connect Four.
@@ -112,15 +113,9 @@ public class State implements Comparable<Object> {
 	public void initializeChildren() {
 		Move[] possibleMoves = board.getPossibleMoves(player);
 		children = new State[possibleMoves.length];
-		Move currentPossibleMove = null;
-
-		if (children.length != 0) {
-			for (int i = 0; i < children.length; i++) {
-				currentPossibleMove = possibleMoves[i];
-				children[i] = new State(player.opponent(), new Board(board),
-						currentPossibleMove);
-				children[i].getBoard().makeMove(currentPossibleMove);
-			}
+		if (children.length != 0) { //checks there are possible moves
+			children = Arrays.stream(possibleMoves).map(y -> new State(player.opponent(), new Board(board), y))
+					.map(y -> {y.getBoard().makeMove(y.getLastMove()); return y;}).toArray(State[]::new);
 		}
 	}
 

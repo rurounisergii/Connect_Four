@@ -94,7 +94,7 @@ public class Board {
 			}
 
 			if (i == 0) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException(); //inserted into full column
 			}
 		}
 	}
@@ -127,7 +127,7 @@ public class Board {
     public void fillColumn(int column, int depth, Player player){
     	 for (int i = 0; i < depth ; i++) { //fills column to depth
         	 if (i % 2 == 0) {
-        		 this.makeMove(new Move(player, column));
+        		 this.makeMove(new Move(player, column)); //every turn an alternate player inserts a disc
         	 } else {
         		 this.makeMove(new Move(player.opponent(), column));
         	 }
