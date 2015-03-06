@@ -11,15 +11,45 @@ import connectFour.*;
  */
 public class AiTest {
 
+	/*
+	 * Fill up a board in a certain manner, pass the board to a State
+	 * and check that State.createGameTree() produces the expected result
+	 */
 	@Test
 	public void createGameTreeTester() {
 		Board testerBoard = new Board();
 		testerBoard.fillColumn(0, Board.NUM_ROWS, Player.RED);
 		testerBoard.fillColumn(1, Board.NUM_ROWS, Player.RED);
-		testerBoard.fillColumn(2, Board.NUM_ROWS -1, Player.RED);
+		testerBoard.fillColumn(2, Board.NUM_ROWS, Player.RED);
 		testerBoard.fillColumn(4, Board.NUM_ROWS, Player.RED);
 		testerBoard.fillColumn(5, Board.NUM_ROWS, Player.RED);
-		testerBoard.fillColumn(6, Board.NUM_ROWS, Player.RED);
+		testerBoard.fillColumn(6, Board.NUM_ROWS - 1, Player.RED);
+		testerBoard.fillColumn(3, Board.NUM_ROWS -2, Player.YELLOW);
+		State testerState = new State(Player.YELLOW, testerBoard, null);
+		AI.createGameTree(testerState, 3);
+		//check that testerState's children and descendants have been initalized as expected
+		assertEquals(2,testerState.getChildren().length); //there should be 2 possible moves from the board
+		assertEquals(Player.RED, testerState.getChildren()[0].getPlayer()); //children state should be opposite player's turn
+		//check that the children have been initialized as expected
+		assertEquals(Player.YELLOW, testerState.getChildren()[0].getBoard().getTile(1, 3));
+		assertEquals(null, testerState.getChildren()[0].getBoard().getTile(0, 3));
+		assertEquals(null, testerState.getChildren()[0].getBoard().getTile(0, 6));
+		assertEquals(Player.YELLOW, testerState.getChildren()[1].getBoard().getTile(0,6));
+		assertEquals(null, testerState.getChildren()[1].getBoard().getTile(1,3));
+		//check that the children's children, i.e. descendants have been initialized correctly
+		assertEquals(2, testerState.getChildren()[0].getChildren().length);
+		assertEquals(1, testerState.getChildren()[1].getChildren().length);
+		assertEquals(Player.RED, testerState.getChildren()[0].getChildren()[0].getLastMove().getPlayer());
+		assertEquals(3, testerState.getChildren()[0].getChildren()[0].getLastMove().getColumn());
+		assertEquals(Player.RED, testerState.getChildren()[0].getChildren()[1].getBoard().getTile(0, 6));
+		assertEquals(6, testerState.getChildren()[0].getChildren()[1].getLastMove().getColumn());
+		//check childrens, childrens, children
+		assertEquals(1, testerState.getChildren()[0].getChildren()[0].getChildren().length);
+		assertEquals(6, testerState.getChildren()[0].getChildren()[0].getChildren()[0].getLastMove().getColumn());
+		assertEquals(1, testerState.getChildren()[0].getChildren()[1].getChildren().length);
+		assertEquals(3, testerState.getChildren()[0].getChildren()[1].getChildren()[0].getLastMove().getColumn());
+		assertEquals(0, testerState.getChildren()[1].getChildren()[0].getChildren().length);//no children as winning state
+		
 		
 	}
 	
