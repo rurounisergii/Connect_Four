@@ -1,8 +1,6 @@
-package unitTests;
+
 
 import static org.junit.Assert.*;
-import connectFour.*;
-
 import org.junit.*;
 
 /**

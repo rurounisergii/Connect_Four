@@ -1,4 +1,4 @@
-package connectFour;
+
 import java.util.concurrent.Semaphore;
 
 /**  NOTHING FOR YOU TO DO HERE. */

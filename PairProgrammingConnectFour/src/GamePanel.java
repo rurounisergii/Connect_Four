@@ -1,6 +1,7 @@
-package connectFour;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;

@@ -1,10 +1,11 @@
-package connectFour;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.border.BevelBorder;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -31,7 +32,7 @@ public class GUI extends JFrame {
          * a player parameter; the AI constructor has a player and depth
          * as parameters, with the a depth used to recurse when searching the
          * game space. */
-        Solver p1= new AI(Player.RED, 6);
+        Solver p1= new AI(Player.RED, 5);
         Solver p2=new AI(Player.YELLOW,5);
    //     Solver p2= new Human(Player.YELLOW);
         //Solver p1 = new Dummy(Player.RED);
