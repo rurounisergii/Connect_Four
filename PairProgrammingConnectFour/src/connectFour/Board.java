@@ -2,6 +2,9 @@ package connectFour;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * An instance represents a grid of pieces from two opposing players in a game
@@ -109,15 +112,9 @@ public class Board {
 		if (hasConnectFour() != null) { //no possible moves if there is a winner
 			return new Move[0];
 		}
-		
-		ArrayList<Move> movesArray = new ArrayList<Move>();
-		for (int i = 0; i < NUM_COLS; i++) {
-			if (getTile(0, i) == null) {
-				movesArray.add(new Move(p,i));
-			}
+	    Integer[] possibleMovesInt = IntStream.rangeClosed(0, NUM_COLS -1).filter(x -> getTile(0,x) == null).boxed().toArray(Integer[]::new);
+	    return Arrays.stream(possibleMovesInt).map(y -> new Move(p,y)).toArray(Move[]::new);
 		}
-		return movesArray.stream().toArray(Move[]::new);
-	}
 
     /**
      * This method is used to quickly fill up a board in a desired way when testing
