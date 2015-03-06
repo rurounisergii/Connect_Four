@@ -112,7 +112,9 @@ public class Board {
 		if (hasConnectFour() != null) { //no possible moves if there is a winner
 			return new Move[0];
 		}
+		//check which columns are full by checking if top tile is filled:
 	    Integer[] possibleMovesInt = IntStream.rangeClosed(0, NUM_COLS -1).filter(x -> getTile(0,x) == null).boxed().toArray(Integer[]::new);
+	    //for every column that is not full, create a possible Move for it:
 	    return Arrays.stream(possibleMovesInt).map(y -> new Move(p,y)).toArray(Move[]::new);
 		}
 
