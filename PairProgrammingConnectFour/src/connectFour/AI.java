@@ -35,11 +35,9 @@ public class AI implements Solver {
 			return new Move[0];
 		}
 		State boardState = new State(player, b, null);
-		minimax(this, boardState);
+		minimax(this, boardState); //creates the gameTree and sets the values for each node
 		int maxValue = Arrays.stream(boardState.getChildren()).map(x -> x.getValue()).max(Integer::compare).get();
-		System.out.println("max value: " + maxValue);
 		Move[] resultMoves = Arrays.stream(boardState.getChildren()).filter(y -> y.getValue() == maxValue).map(t -> t.getLastMove()).toArray(Move[]::new);
-		Arrays.stream(resultMoves).forEach(System.out::println);
 		return resultMoves;
 	}
 
@@ -82,9 +80,9 @@ public class AI implements Solver {
 	 * player.
 	 */
 	public void minimax(State s) {
-    	if (s.getChildren().length != 0) { // parents
-    		Arrays.stream(s.getChildren()).forEach(x -> minimax(x));
-    		if (player == s.getPlayer()) { // get max value as current player
+    	if (s.getChildren().length != 0) { // parent node
+    		Arrays.stream(s.getChildren()).forEach(x -> minimax(x)); //set up the children values
+    		if (player == s.getPlayer()) { // get max value as its the current player
     				s.setValue(Arrays.stream(s.getChildren()).map(x -> x.getValue()).max(Integer::compare).get());
     			
     		} else { // get min value as opponent

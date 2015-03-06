@@ -48,9 +48,24 @@ public class AiTest {
 		assertEquals(6, testerState.getChildren()[0].getChildren()[0].getChildren()[0].getLastMove().getColumn());
 		assertEquals(1, testerState.getChildren()[0].getChildren()[1].getChildren().length);
 		assertEquals(3, testerState.getChildren()[0].getChildren()[1].getChildren()[0].getLastMove().getColumn());
-		assertEquals(0, testerState.getChildren()[1].getChildren()[0].getChildren().length);//no children as winning state
-		
-		
+		assertEquals(0, testerState.getChildren()[1].getChildren()[0].getChildren().length);//no children as winning state	
+	}
+	
+	/**
+	 * fills up a board in a certain way. Tests that minimax and getMoves get the best possible move
+	 */
+	@Test
+	public void testMiniMaxAndGetMoves(){
+		Board testerBoard = new Board();
+		testerBoard.fillColumn(0, Board.NUM_ROWS, Player.RED);
+		testerBoard.fillColumn(1, Board.NUM_ROWS, Player.RED);
+		testerBoard.fillColumn(2, Board.NUM_ROWS, Player.RED);
+		testerBoard.fillColumn(4, Board.NUM_ROWS, Player.RED);
+		testerBoard.fillColumn(5, Board.NUM_ROWS, Player.RED);
+		testerBoard.fillColumn(6, Board.NUM_ROWS - 1, Player.RED);
+		testerBoard.fillColumn(3, Board.NUM_ROWS -2, Player.YELLOW);
+		State testerState = new State(Player.YELLOW, testerBoard, null);		
+	
 	}
 	
 	@Test
@@ -69,9 +84,6 @@ public class AiTest {
 		// testerState.getChildren()[0].getBoard().getTile(5, 6));
 		fail("Not yet implemented");
 	}
-	@Test
-	public void getMovesTest(){
-		
-	}
+
 
 }
