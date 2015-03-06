@@ -89,7 +89,9 @@ public class AiTest {
 		
 	}
 	
-	@Test
+	/**
+	 * non junit test - prints the gameTree to output.txt and it can be viewed to check it is correct
+	 */
 	public void minimaxTester() {
 		Board testerBoard = new Board();
 		Game.fillColumn(testerBoard, 0, Board.NUM_ROWS, Player.RED);
@@ -99,11 +101,6 @@ public class AiTest {
 		State testerState = new State(Player.YELLOW, testerBoard, null);
 		AI.minimax(new AI(Player.YELLOW, 6), testerState);
 		testerState.writeToFile();
-		AI testerAI = new AI(Player.YELLOW, 6);
-		testerAI.getMoves(testerState.getBoard());
-		// assertEquals(Player.YELLOW,
-		// testerState.getChildren()[0].getBoard().getTile(5, 6));
-	
 	}
 
 
