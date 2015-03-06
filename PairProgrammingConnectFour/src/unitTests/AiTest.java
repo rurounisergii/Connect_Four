@@ -1,7 +1,11 @@
 package unitTests;
 
 import static org.junit.Assert.*;
+
+import java.util.Arrays;
+
 import org.junit.Test;
+
 import connectFour.*;
 
 /**
@@ -64,8 +68,25 @@ public class AiTest {
 		testerBoard.fillColumn(5, Board.NUM_ROWS, Player.RED);
 		testerBoard.fillColumn(6, Board.NUM_ROWS - 1, Player.RED);
 		testerBoard.fillColumn(3, Board.NUM_ROWS -2, Player.YELLOW);
-		State testerState = new State(Player.YELLOW, testerBoard, null);		
-	
+		AI aiTester = new AI(Player.YELLOW, 3);
+		Move[] result = aiTester.getMoves(testerBoard);
+		//Based on the way the board has been set up, there should be 1 optimal move
+		//where Player.YELLOW inserts into column 3 to block RED from winning in the next round
+		assertEquals(1, result.length);
+		assertEquals(3, result[0].getColumn());
+		
+		Board testerBoard2 = new Board();
+		testerBoard2.fillColumn(0, Board.NUM_ROWS, Player.RED);
+		testerBoard2.fillColumn(1, Board.NUM_ROWS, Player.RED);
+		testerBoard2.fillColumn(2, Board.NUM_ROWS, Player.RED);
+		testerBoard2.makeMove(new Move(Player.RED, 6));
+		AI aiTester2 = new AI(Player.YELLOW, 4);
+		Move[] result2 = aiTester2.getMoves(testerBoard2);
+		//There should be 1 optimal move for Player.YELLOW which is to insert into
+		//column 3 to prevent Player.RED from winning
+		assertEquals(3, result2[0].getColumn());	
+		assertEquals(1, result2.length);
+		
 	}
 	
 	@Test
@@ -82,7 +103,7 @@ public class AiTest {
 		testerAI.getMoves(testerState.getBoard());
 		// assertEquals(Player.YELLOW,
 		// testerState.getChildren()[0].getBoard().getTile(5, 6));
-		fail("Not yet implemented");
+	
 	}
 
 
