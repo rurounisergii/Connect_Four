@@ -37,7 +37,6 @@ public class AI implements Solver {
 		State boardState = new State(player, b, null);
 		minimax(this, boardState); //creates the gameTree and sets the values for each node
 		int maxValue = Arrays.stream(boardState.getChildren()).map(x -> x.getValue()).max(Integer::compare).get();
-		Arrays.stream(boardState.getChildren()).filter(y -> y.getValue() == maxValue).forEach(x -> System.out.println(x + "value: " +  x.getValue()));
 		Move[] resultMoves = Arrays.stream(boardState.getChildren()).filter(y -> y.getValue() == maxValue).map(t -> t.getLastMove()).toArray(Move[]::new);
 		return resultMoves;
 	}
