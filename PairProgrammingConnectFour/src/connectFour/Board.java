@@ -106,18 +106,17 @@ public class Board {
 	 * Thus, if all columns are full, return an array of length 0.
 	 */
 	public Move[] getPossibleMoves(Player p) {
-		if (hasConnectFour() != null) {
+		if (hasConnectFour() != null) { //no possible moves if there is a winner
 			return new Move[0];
 		}
+		
 		ArrayList<Move> movesArray = new ArrayList<Move>();
 		for (int i = 0; i < NUM_COLS; i++) {
 			if (getTile(0, i) == null) {
 				movesArray.add(new Move(p,i));
 			}
 		}
-		Move[] result = new Move[movesArray.size()];
-		result = movesArray.toArray(result);
-		return result;
+		return movesArray.stream().toArray(Move[]::new);
 	}
 
     /**
